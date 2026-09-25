@@ -1,6 +1,6 @@
 {
-  "best_val_acc": 92.65,
-  "total_epochs": 8,
+  "best_val_acc": 92.75,
+  "total_epochs": 10,
   "history": [
     {
       "epoch": 1,
@@ -65,6 +65,22 @@
       "val_loss": 0.9388,
       "val_acc": 92.65,
       "duration_sec": 274.2
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.6996,
+      "train_acc": 99.72,
+      "val_loss": 0.9329,
+      "val_acc": 92.75,
+      "duration_sec": 298.7
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.6982,
+      "train_acc": 99.74,
+      "val_loss": 0.931,
+      "val_acc": 92.72,
+      "duration_sec": 315.8
     }
   ]
 }

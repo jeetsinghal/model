@@ -1,9 +1,91 @@
 {
-  "is_training": true,
-  "completed": false,
-  "current_epoch": 9,
+  "is_training": false,
+  "completed": true,
+  "current_epoch": 10,
   "total_epochs": 10,
-  "status_text": "Validating Epoch 9/10 against 3171 test samples...",
-  "best_val_acc": 92.65,
-  "updated_at": 1790365287.538423
+  "best_val_acc": 92.75,
+  "status_text": "Training completed successfully! Peak Validation Accuracy: 92.75%",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.0954,
+      "train_acc": 88.35,
+      "val_loss": 1.3076,
+      "val_acc": 80.57,
+      "duration_sec": 336.3
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8269,
+      "train_acc": 96.06,
+      "val_loss": 1.1435,
+      "val_acc": 86.88,
+      "duration_sec": 292.4
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.7624,
+      "train_acc": 98.13,
+      "val_loss": 1.0273,
+      "val_acc": 90.67,
+      "duration_sec": 307.8
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.753,
+      "train_acc": 98.42,
+      "val_loss": 1.1561,
+      "val_acc": 87.13,
+      "duration_sec": 316.0
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.7313,
+      "train_acc": 99.0,
+      "val_loss": 1.0065,
+      "val_acc": 91.14,
+      "duration_sec": 298.3
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.7186,
+      "train_acc": 99.29,
+      "val_loss": 0.9992,
+      "val_acc": 90.98,
+      "duration_sec": 303.9
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.7065,
+      "train_acc": 99.61,
+      "val_loss": 0.9646,
+      "val_acc": 92.12,
+      "duration_sec": 288.3
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.7035,
+      "train_acc": 99.63,
+      "val_loss": 0.9388,
+      "val_acc": 92.65,
+      "duration_sec": 274.2
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.6996,
+      "train_acc": 99.72,
+      "val_loss": 0.9329,
+      "val_acc": 92.75,
+      "duration_sec": 298.7
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.6982,
+      "train_acc": 99.74,
+      "val_loss": 0.931,
+      "val_acc": 92.72,
+      "duration_sec": 315.8
+    }
+  ],
+  "updated_at": 1790365645.1915698
 }
