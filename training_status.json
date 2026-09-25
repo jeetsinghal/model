@@ -1,0 +1,9 @@
+{
+  "is_training": true,
+  "completed": false,
+  "current_epoch": 9,
+  "total_epochs": 10,
+  "status_text": "Validating Epoch 9/10 against 3171 test samples...",
+  "best_val_acc": 92.65,
+  "updated_at": 1790365287.538423
+}

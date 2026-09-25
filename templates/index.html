@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision AI — Intelligent Crop Health, Future Prognosis & Precision Agronomy System</title>
+    <meta name="description" content="AI-powered 10-epoch deep learning crop disease detection, future risk prediction, 7-day cure roadmap, and precision agronomic remediation.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Background Ambient Glows -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <div class="app-layout">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z"></path>
+                        <path d="M12 6v12"></path>
+                        <path d="M12 12c-3-2.5-4-5.5-4-8 2.5 0 5.5 1 8 4"></path>
+                        <path d="M12 18c3-2.5 4-5.5 4-8-2.5 0-5.5 1-8 4"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">AgriVision<span class="brand-accent">AI</span></span>
+                    <span class="brand-sub">Neural Agronomy Diagnostic & Prognostic System</span>
+                </div>
+            </div>
+
+            <div class="nav-metrics">
+                <button type="button" class="metric-pill clickable-pill" id="openTrainingModalBtn" title="View 10-Epoch Neural Training & Performance Analytics">
+                    <span class="pulse-dot" id="trainingPulseDot"></span>
+                    <span id="modelStatusText">10-Epoch Vision: Active (90.67%)</span>
+                    <span class="pill-badge">View Analytics</span>
+                </button>
+                <div class="metric-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span>42 Pathogen & Pest Classes</span>
+                </div>
+                <div class="metric-pill highlight">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <span id="hardwarePillText">Apple MPS Accelerated</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-container">
+            <!-- Hero Title -->
+            <section class="hero-section">
+                <div class="hero-badge">Deep Neural Prognosis & Precision Cure System</div>
+                <h1 class="hero-title">Crop Disease Diagnosis & Future Risk Prognosis</h1>
+                <p class="hero-subtitle">
+                    Upload an image of leaves, stems, ears, or bolls from Cotton, Wheat, Rice, Sugarcane, or Maize for immediate classification, stage-by-stage future prognosis if untreated, and actionable 7-day cure protocols.
+                </p>
+            </section>
+
+            <!-- Working Grid: Left (Upload & Samples) / Right (Diagnosis & Prescription) -->
+            <div class="workspace-grid">
+                
+                <!-- Left Column: Input Panel -->
+                <div class="card glass input-panel">
+                    <div class="card-header">
+                        <div class="header-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        </div>
+                        <h2>Upload Crop Specimen</h2>
+                    </div>
+
+                    <!-- Dropzone -->
+                    <div class="dropzone" id="dropZone">
+                        <input type="file" id="fileInput" accept="image/*" class="file-input-hidden">
+                        
+                        <div class="dropzone-content" id="dropzonePrompt">
+                            <div class="upload-icon-wrapper">
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </div>
+                            <h3 class="upload-title">Drag & drop crop image here</h3>
+                            <p class="upload-hint">Supports high-res JPG, PNG, WEBP from mobile camera or drone</p>
+                            <button type="button" class="btn btn-outline" id="browseBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                Browse Local Files
+                            </button>
+                        </div>
+
+                        <!-- Image Preview & Scanner Overlay -->
+                        <div class="preview-container hidden" id="previewContainer">
+                            <img id="imagePreview" src="" alt="Specimen Preview" class="specimen-img">
+                            
+                            <!-- Laser Scan Overlay Animation -->
+                            <div class="scan-laser" id="scanLaser">
+                                <div class="laser-line"></div>
+                                <div class="laser-grid"></div>
+                                <div class="scanning-badge">
+                                    <span class="spinner-sm"></span>
+                                    <span>Scanning Diagnostic Vectors...</span>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-clear-preview" id="clearPreviewBtn" title="Remove specimen">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Action Bar -->
+                    <div class="action-bar">
+                        <button type="button" class="btn btn-primary" id="analyzeBtn" disabled>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <span>Run Neural Diagnosis & Prognosis</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Test Sample Gallery with Filters -->
+                    <div class="samples-section">
+                        <div class="samples-header">
+                            <span class="samples-title">⚡ 1-Click Verification Gallery:</span>
+                            <span class="samples-counter" id="samplesCount">Loading samples...</span>
+                        </div>
+
+                        <!-- Crop Category Filter Buttons -->
+                        <div class="crop-filter-bar">
+                            <button type="button" class="crop-filter-btn active" data-filter="all">All</button>
+                            <button type="button" class="crop-filter-btn" data-filter="Cotton">🌿 Cotton</button>
+                            <button type="button" class="crop-filter-btn" data-filter="Rice">🍚 Rice</button>
+                            <button type="button" class="crop-filter-btn" data-filter="Wheat">🌾 Wheat</button>
+                            <button type="button" class="crop-filter-btn" data-filter="Maize">🌽 Maize</button>
+                            <button type="button" class="crop-filter-btn" data-filter="Sugarcane">🎋 Sugarcane</button>
+                        </div>
+
+                        <div class="samples-scroll" id="samplesContainer">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Results & Agronomic Advisory Panel -->
+                <div class="card glass results-panel" id="resultsPanel">
+                    
+                    <!-- Empty State Placeholder -->
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-graphic">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z"></path>
+                                <path d="M7 12a5 5 0 0 1 5-5v5h5a5 5 0 0 1-5 5v-5H7z"></path>
+                            </svg>
+                        </div>
+                        <h3>Awaiting Crop Specimen</h3>
+                        <p>Upload a photo of crop leaves, stems, ears, or bolls, or click any sample in the gallery to generate complete clinical diagnosis, future prognosis if uncured, and 7-day cure roadmap.</p>
+                        
+                        <div class="supported-crops-box">
+                            <span class="crops-title">Supported Agricultural Systems:</span>
+                            <div class="crop-tags">
+                                <span class="tag">🌾 Wheat</span>
+                                <span class="tag">🌿 Cotton</span>
+                                <span class="tag">🍚 Rice</span>
+                                <span class="tag">🎋 Sugarcane</span>
+                                <span class="tag">🌽 Maize (Corn)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Populated Results Content -->
+                    <div class="results-content hidden" id="resultsContent">
+                        
+                        <!-- Primary Diagnosis Header Card -->
+                        <div class="diagnosis-hero-card" id="diagnosisHeroCard">
+                            <div class="diagnosis-top-row">
+                                <div class="crop-badge-group">
+                                    <span class="crop-pill" id="cropNamePill">Cotton</span>
+                                    <span class="category-pill" id="categoryPill">Fungal Disease</span>
+                                </div>
+                                <div class="severity-pill" id="severityPill">Critical</div>
+                            </div>
+
+                            <h2 class="diagnosis-title" id="diagnosisTitle">Rice Blast (Leaf / Neck Blast)</h2>
+                            <p class="pathogen-info" id="pathogenInfo">Pathogen: <em>Magnaporthe oryzae</em></p>
+
+                            <!-- Confidence Meter -->
+                            <div class="confidence-box">
+                                <div class="confidence-labels">
+                                    <span>Neural Diagnostic Confidence</span>
+                                    <span class="confidence-val" id="confidenceValue">98.6%</span>
+                                </div>
+                                <div class="confidence-track">
+                                    <div class="confidence-bar" id="confidenceBar" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FUTURE PREDICTION & UNTREATED RISK HIGHLIGHT BANNER -->
+                        <div class="future-risk-banner" id="futureRiskBanner">
+                            <div class="risk-metric-cell">
+                                <span class="risk-cell-label">Projected Yield Loss if Untreated</span>
+                                <div class="risk-cell-value-group">
+                                    <span class="risk-percent-number" id="riskPercentNumber">85%</span>
+                                    <div class="risk-bar-track">
+                                        <div class="risk-bar-fill" id="riskBarFill" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="risk-metric-cell">
+                                <span class="risk-cell-label">Contagion Vector & Speed</span>
+                                <span class="risk-cell-badge" id="contagionBadge">Extremely High • Windborne Spores</span>
+                            </div>
+                            <div class="risk-metric-cell">
+                                <span class="risk-cell-label">Neighboring Plot Exposure</span>
+                                <span class="risk-cell-text" id="neighborRiskText">Severe risk to adjacent plots within 48h</span>
+                            </div>
+                        </div>
+
+                        <!-- Actionable Tabs Navigation (7 comprehensive modules) -->
+                        <div class="tab-nav">
+                            <button type="button" class="tab-btn active" data-tab="tab-prognosis">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                Future Prognosis
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="tab-solution">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                                7-Day Cure Roadmap
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="tab-symptoms">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                                Symptoms & Triggers
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="tab-organic">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z"></path><path d="M12 6v12"></path></svg>
+                                Organic Controls
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="tab-chemical">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31M14 9.3V2M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"></path></svg>
+                                Chemical Formulations
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="tab-nutrition">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                Soil & Nutrition
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="tab-prevention">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                Long-Term Prevention
+                            </button>
+                        </div>
+
+                        <!-- Tab Panes -->
+                        <div class="tab-panes">
+                            <!-- Tab: Future Prognosis & Timeline -->
+                            <div class="tab-pane active" id="tab-prognosis">
+                                <div class="advisory-card callout-alert">
+                                    <div class="advisory-label alert-text">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                        Yield Loss Risk & Harvest Impact
+                                    </div>
+                                    <p class="advisory-text font-strong" id="yieldLossRiskText"></p>
+                                </div>
+
+                                <div class="advisory-card">
+                                    <div class="advisory-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                        Economic & Commercial Ramifications
+                                    </div>
+                                    <p class="advisory-text" id="economicImpactText"></p>
+                                </div>
+
+                                <div class="advisory-card">
+                                    <div class="advisory-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                                        Untreated Progression Timeline (Stage by Stage)
+                                    </div>
+                                    <div class="timeline-container" id="timelineContainer">
+                                        <!-- Populated dynamically via JS -->
+                                    </div>
+                                </div>
+
+                                <div class="advisory-card">
+                                    <div class="advisory-label warning-text">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                                        Contagion Radius & Spread Mechanism
+                                    </div>
+                                    <p class="advisory-text" id="contagionRadiusText"></p>
+                                </div>
+                            </div>
+
+                            <!-- Tab: 7-Day Cure Roadmap -->
+                            <div class="tab-pane" id="tab-solution">
+                                <div class="advisory-card">
+                                    <div class="advisory-label success-text">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                        Step-by-Step 7-Day Action Protocol
+                                    </div>
+                                    <div class="roadmap-grid" id="roadmapGrid">
+                                        <!-- Populated dynamically via JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Symptoms & Triggers -->
+                            <div class="tab-pane" id="tab-symptoms">
+                                <div class="advisory-card">
+                                    <div class="advisory-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                        Observed Clinical Symptoms
+                                    </div>
+                                    <p class="advisory-text" id="symptomsText"></p>
+                                </div>
+
+                                <div class="advisory-card">
+                                    <div class="advisory-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                                        Environmental Drivers & Triggers
+                                    </div>
+                                    <p class="advisory-text" id="envFactorsText"></p>
+                                </div>
+
+                                <div class="advisory-card callout-alert">
+                                    <div class="advisory-label alert-text">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                        Immediate Remediation (First 24–48 Hours)
+                                    </div>
+                                    <p class="advisory-text" id="immediateActionText"></p>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Organic Controls -->
+                            <div class="tab-pane" id="tab-organic">
+                                <div class="advisory-card">
+                                    <div class="advisory-label success-text">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z"></path></svg>
+                                        Eco-Friendly & Biological Treatments
+                                    </div>
+                                    <ul class="treatment-list" id="organicList"></ul>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Chemical Protocols -->
+                            <div class="tab-pane" id="tab-chemical">
+                                <div class="advisory-card">
+                                    <div class="advisory-label warning-text">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31M14 9.3V2M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"></path></svg>
+                                        Targeted Chemical Formulations & Dosages
+                                    </div>
+                                    <ul class="treatment-list" id="chemicalList"></ul>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Nutrition & Soil -->
+                            <div class="tab-pane" id="tab-nutrition">
+                                <div class="advisory-card">
+                                    <div class="advisory-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                        Nutritional & Soil Remediation Protocol
+                                    </div>
+                                    <p class="advisory-text" id="nutritionalText"></p>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Prevention -->
+                            <div class="tab-pane" id="tab-prevention">
+                                <div class="advisory-card">
+                                    <div class="advisory-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                        Long-Term Agronomic & Cultural Safeguards
+                                    </div>
+                                    <p class="advisory-text" id="preventionText"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top-K Differential Diagnosis Breakdown -->
+                        <div class="differential-box">
+                            <h4 class="differential-title">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                                Neural Probability Distribution (Top Candidates)
+                            </h4>
+                            <div class="candidates-list" id="candidatesList"></div>
+                        </div>
+
+                        <!-- Footer Actions: Print/Export Report -->
+                        <div class="results-actions">
+                            <button type="button" class="btn btn-outline" id="printReportBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                                Print / Save Agronomy Report
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="copySummaryBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                Copy Diagnostic & Prognostic Summary
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 10-EPOCH TRAINING & ANALYTICS MODAL -->
+    <div class="modal-backdrop hidden" id="trainingModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <div class="header-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <div>
+                        <h3 class="modal-title">10-Epoch Deep Neural Training & Performance Analytics</h3>
+                        <p class="modal-subtitle">MobileNetV3-Large Transfer Learning on Apple Silicon MPS Hardware Acceleration</p>
+                    </div>
+                </div>
+                <button type="button" class="modal-close-btn" id="closeTrainingModalBtn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Quick KPI Metrics Grid -->
+                <div class="modal-kpi-grid">
+                    <div class="kpi-card">
+                        <span class="kpi-label">Peak Validation Accuracy</span>
+                        <span class="kpi-value highlight-green" id="kpiBestValAcc">90.67%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Target Epochs</span>
+                        <span class="kpi-value" id="kpiTargetEpochs">10 Epochs</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Active Epoch Progress</span>
+                        <span class="kpi-value" id="kpiCurrentEpoch">3 / 10 Completed</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Hardware Acceleration</span>
+                        <span class="kpi-value" id="kpiDevice">MPS (Metal)</span>
+                    </div>
+                </div>
+
+                <!-- Live Training Banner (when active) -->
+                <div class="training-live-banner hidden" id="liveTrainingBanner">
+                    <div class="live-banner-content">
+                        <span class="spinner-sm"></span>
+                        <span id="liveTrainingStatusText">Training in progress...</span>
+                    </div>
+                    <div class="live-progress-track">
+                        <div class="live-progress-bar" id="liveProgressBar" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- Interactive Convergence Graph (SVG Canvas) -->
+                <div class="chart-section">
+                    <h4 class="chart-title">Loss & Accuracy Convergence Curves (Epoch 1 to 10)</h4>
+                    <div class="chart-wrapper" id="chartContainer">
+                        <svg id="convergenceSvg" class="convergence-svg" viewBox="0 0 700 240" preserveAspectRatio="none">
+                            <!-- Populated dynamically via JS -->
+                        </svg>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot val-acc-dot"></span> Validation Accuracy (%)</span>
+                            <span class="legend-item"><span class="legend-dot train-acc-dot"></span> Training Accuracy (%)</span>
+                            <span class="legend-item"><span class="legend-dot val-loss-dot"></span> Validation Loss</span>
+                            <span class="legend-item"><span class="legend-dot train-loss-dot"></span> Training Loss</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Epoch History Table -->
+                <div class="history-table-container">
+                    <h4 class="chart-title">Epoch Progression Breakdown</h4>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Epoch</th>
+                                <th>Train Loss</th>
+                                <th>Train Acc</th>
+                                <th>Val Loss</th>
+                                <th>Val Acc</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="startTrainingBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    <span>Train / Resume Remaining Epochs</span>
+                </button>
+                <button type="button" class="btn btn-outline" id="closeModalBottomBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
